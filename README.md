@@ -1,0 +1,4 @@
+myserver
+========
+
+my game server
