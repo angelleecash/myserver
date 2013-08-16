@@ -11,17 +11,19 @@ import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
 public class MyServerPipelineFactory implements ChannelPipelineFactory {
-
+	
+	
     public ChannelPipeline getPipeline() throws Exception {
     	
-        ChannelPipeline p = Channels.pipeline();
-        p.addLast("frameDecoder", new ProtobufVarint32FrameDecoder());
-        p.addLast("protobufDecoder", new ProtobufDecoder(MyMessages.MessageBase.getDefaultInstance()));
+        ChannelPipeline pipeline = Channels.pipeline();
+        pipeline.addLast("frameDecoder", new ProtobufVarint32FrameDecoder());
+        pipeline.addLast("protobufDecoder", new ProtobufDecoder(MyMessages.MessageBase.getDefaultInstance()));
 
-        p.addLast("frameEncoder", new ProtobufVarint32LengthFieldPrepender());
-        p.addLast("protobufEncoder", new ProtobufEncoder());
+        pipeline.addLast("frameEncoder", new ProtobufVarint32LengthFieldPrepender());
+        pipeline.addLast("protobufEncoder", new ProtobufEncoder());
 
-        p.addLast("handler", new MyServerHandler());
-        return p;
+        pipeline.addLast("handler", new MyServerHandler());
+        pipeline.addLast("monitor", MyServerChannelMonitor.instance);
+        return pipeline;
     }
 }

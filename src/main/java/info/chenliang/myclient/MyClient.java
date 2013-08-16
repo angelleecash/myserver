@@ -18,7 +18,7 @@ public class MyClient {
 		// Set up.
 		String host = "192.168.1.105";
 		//String host = "localhost";
-		int port = 7000;
+		int port = 8888;
 		
         ClientBootstrap bootstrap = new ClientBootstrap(
                 new NioClientSocketChannelFactory(

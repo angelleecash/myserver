@@ -10,6 +10,7 @@
 
 	<!-- Configure the three servers. By default tcp runs at 8090 and flash 
 		at 843 -->
+
 	<bean id="myServer" class="info.chenliang.myserver.MyServer"
 		init-method="start" destroy-method="stop">
 		<property name="address" value="${server.address}"></property>

@@ -1,11 +1,8 @@
 package info.chenliang.myserver;
 
-import java.util.logging.Logger;
-
-import info.chenliang.myclient.MyClientHandler;
 import info.chenliang.myserver.messages.MyMessages.MessageBase;
-import info.chenliang.myserver.messages.MyMessages.VersionResponse;
 import info.chenliang.myserver.messages.MyMessages.MessageBase.MessageType;
+import info.chenliang.myserver.messages.MyMessages.VersionResponse;
 
 import org.jboss.netty.channel.ChannelEvent;
 import org.jboss.netty.channel.ChannelHandlerContext;
@@ -15,11 +12,12 @@ import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 import org.jboss.netty.channel.WriteCompletionEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MyServerHandler extends SimpleChannelUpstreamHandler{
 
-	private static final Logger logger = Logger.getLogger(
-            MyClientHandler.class.getName());
+	private static Logger logger = LoggerFactory.getLogger(MyServerHandler.class);
 	
 	@Override
 	public void handleUpstream(ChannelHandlerContext ctx, ChannelEvent e)
@@ -52,6 +50,7 @@ public class MyServerHandler extends SimpleChannelUpstreamHandler{
 			throws Exception {
 		// TODO Auto-generated method stub
 		super.exceptionCaught(ctx, e);
+		
 	}
 
 	@Override
@@ -101,8 +100,7 @@ public class MyServerHandler extends SimpleChannelUpstreamHandler{
 			throws Exception {
 		// TODO Auto-generated method stub
 		super.channelClosed(ctx, e);
-		
-		logger.warning("channel closed");
+		logger.warn("channel closed");
 	}
 
 	@Override

@@ -16,12 +16,12 @@
 package info.chenliang.myclient;
 
 import info.chenliang.myserver.messages.MyMessages.MessageBase;
+
 import info.chenliang.myserver.messages.MyMessages.MessageBase.MessageType;
 import info.chenliang.myserver.messages.MyMessages.VersionRequest;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelEvent;
@@ -30,11 +30,12 @@ import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MyClientHandler extends SimpleChannelUpstreamHandler {
 
-    private static final Logger logger = Logger.getLogger(
-            MyClientHandler.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(MyClientHandler.class);
 
     // Stateful properties
     private volatile Channel channel;
@@ -84,7 +85,7 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
         switch(mb.getType())
         {
         case VERSION_RESPONSE:
-        	logger.warning("version response received.");
+        	logger.warn("version response received.");
         	break;
         default:
         	break;
@@ -94,10 +95,9 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
     @Override
     public void exceptionCaught(
             ChannelHandlerContext ctx, ExceptionEvent e) {
-        logger.log(
-                Level.WARNING,
+        logger.info(
                 "Unexpected exception from downstream.",
-                e.getCause());
+                e.getCause().toString());
         e.getChannel().close();
     }
 }
