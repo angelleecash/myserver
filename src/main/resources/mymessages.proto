@@ -1,0 +1,32 @@
+package info.chenliang.myserver.messages;
+
+option java_outer_classname = "MyMessages";
+
+message MessageBase
+{
+	extensions 10000 to max;
+	
+	enum MessageType
+	{
+		VERSION_REQUEST=1;
+		VERSION_RESPONSE=2;
+	}
+	
+	required MessageType type=1;
+}
+
+message VersionRequest
+{
+	extend MessageBase
+	{
+		required VersionRequest id=10000;
+	}
+}
+
+message VersionResponse
+{
+	extend MessageBase
+	{
+		required VersionResponse id=10001;
+	}
+}
