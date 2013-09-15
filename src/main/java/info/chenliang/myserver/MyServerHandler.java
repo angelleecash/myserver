@@ -39,6 +39,8 @@ public class MyServerHandler extends SimpleChannelUpstreamHandler{
         	VersionResponse versionResponse = VersionResponse.newBuilder().build();
         	
         	ctx.getChannel().write(MessageBase.newBuilder().setType(MessageType.VERSION_RESPONSE).setExtension(VersionResponse.id, versionResponse).build());
+        	
+        	logger.info("version response {}", "fake version 0.0.1");
         	break;
         default:
         	break;
@@ -72,6 +74,8 @@ public class MyServerHandler extends SimpleChannelUpstreamHandler{
 			throws Exception {
 		// TODO Auto-generated method stub
 		super.channelConnected(ctx, e);
+		
+		logger.info("client connected");
 	}
 
 	@Override

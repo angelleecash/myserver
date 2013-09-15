@@ -1,6 +1,7 @@
 package info.chenliang.myclient;
 
 import java.net.InetSocketAddress;
+
 import java.util.concurrent.Executors;
 
 import org.jboss.netty.bootstrap.ClientBootstrap;
@@ -16,7 +17,7 @@ public class MyClient {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// Set up.
-		String host = "192.168.1.105";
+		String host = "192.168.1.104";
 		//String host = "localhost";
 		int port = 8888;
 		

@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 The Netty Project
+
  *
  * The Netty Project licenses this file to you under the Apache License,
  * version 2.0 (the "License"); you may not use this file except in compliance
@@ -21,7 +22,7 @@ import info.chenliang.myserver.messages.MyMessages.MessageBase.MessageType;
 import info.chenliang.myserver.messages.MyMessages.VersionRequest;
 
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
+
 
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelEvent;
@@ -45,7 +46,7 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
     public void handleUpstream(
             ChannelHandlerContext ctx, ChannelEvent e) throws Exception {
         if (e instanceof ChannelStateEvent) {
-            logger.info(e.toString());
+            logger.info("upstream event " + e.toString());
         }
         super.handleUpstream(ctx, e);
     }
@@ -55,7 +56,7 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
 			throws Exception {
 		// TODO Auto-generated method stub
 		super.channelConnected(ctx, e);
-		
+		logger.info("client connected");
 		while(true)
 		{
 			logger.info("requesting...");
